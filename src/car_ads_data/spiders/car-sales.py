@@ -9,10 +9,25 @@ class CarListingItemsSpider(scrapy.Spider):
     def parse(self, response):
         
         for car_ad in response.css('div.listing-item'):
-            
+            card_body = car_ad.css('div.card-body')
+            key_details = card_body.css('ul.key-details')
+
             yield {
-                'author': car_ad.xpath('span/small/text()').get(),
-                'text': car_ad.css('span.text::text').get(),
+                # Details on class="listing-item" card element
+                'id': car_ad.xpath('@id').get(),
+                'vehcategory': car_ad.xpath('@data-webm-vehcategory').get(),
+                'bodystyle': car_ad.xpath('@data-webm-bodystyle').get(),
+                'make': car_ad.xpath('@data-webm-make').get(),
+                'model': car_ad.xpath('@data-webm-model').get(),
+                'state': car_ad.xpath('@data-webm-state').get(),
+                'price': car_ad.xpath('@data-webm-price').get(),
+                # Get the URL and title of listing
+                'url': card_body.xpath('.//a/@href').get(),
+                'title': card_body.xpath('.//a/text()').get(),
+                # Get the odometer and other key details
+                'odometer': key_details.xpath('//li[@data-type="Odometer"]/text()').get(),
+                'transmission': key_details.xpath('//li[@data-type="Transmission"]/text()').get(),
+                'engine': key_details.xpath('//li[@data-type="Engine"]/text()').get(),
             }
 
         next_page = response.css('li.next a::attr("href")').get()

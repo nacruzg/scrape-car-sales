@@ -3,7 +3,7 @@ import scrapy
 class CarListingItemsSpider(scrapy.Spider):
     name = 'car-ad'
     start_urls = [
-        'https://www.carsales.com.au/cars/?q=(And.Service.CARSALES._.(C.State.Western%20Australia._.Region.Perth.)_.Price.range(..20000)._.Odometer.range(..60000)._.Year.range(2015..)._.GenericGearType.Automatic._.Condition.Used.)',
+        "https://www.carsales.com.au/cars/western-australia-state/perth-region/under-25000/under-100000km-kilometres/",
     ]
 
     def parse(self, response):

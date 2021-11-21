@@ -6,7 +6,7 @@ Tools to scrape details published in carsales.com.au and saved them on a data st
 To run the spider generated on that project and save the results on a JSON file:
 ```
 cd src
-scrapy crawl car-ad -O car-ads_YYYYMMDD.json
+scrapy crawl car-ad -O ../data/car_ads_$(date +%Y%m%d-%H%M%S).json
 ```
 
 # Initialise scrapy project

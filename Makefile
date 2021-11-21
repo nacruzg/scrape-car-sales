@@ -23,6 +23,11 @@ create_environment:
 	pipenv install --dev
 	@echo ">>> New virtualenv created in the following location:"
 	pipenv --venv
+	pipenv shell
+## Crawl all car listings fromap website with default settings
+scrape:
+	cd src
+	scrapy crawl car-ad -O ../data/car_ads_$(date +%Y%m%d-%H%M%S).json
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete

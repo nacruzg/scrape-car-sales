@@ -3,9 +3,10 @@ scrape-car-sales
 
 Tools to scrape details published in carsales.com.au and saved them on a data store.
 
-To run the spider generated on that project:
+To run the spider generated on that project and save the results on a JSON file:
 ```
-scrapy crawl car-ad
+cd src
+scrapy crawl car-ad -O car-ads_YYYYMMDD.json
 ```
 
 # Initialise scrapy project

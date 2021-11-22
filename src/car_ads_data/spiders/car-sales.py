@@ -8,7 +8,8 @@ class CarListingItemsSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-
+        # Use items following tutorial to get an idea of different selectors
+        # http://www.zvon.org/comp/r/tut-XPath_1.html#Pages~List_of_XPaths
         for car_ad in response.css("div.listing-item"):
             card_body = car_ad.css("div.card-body")
             details = card_body.css("ul.key-details")
